@@ -15,21 +15,21 @@ const NewtaskForm = ({
   const listCount = [...Array(itemsCount).keys()];
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="newTask"
-      tabindex="-1"
+      tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">
               Create a New Task
             </h5>
             <button
               type="button"
-              class="close"
+              className="close"
               data-dismiss="modal"
               aria-label="Close"
               id="close"
@@ -37,7 +37,7 @@ const NewtaskForm = ({
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div className="modal-body">
             <span>New Folder Task Name </span>
             <input
               className="form-control task-name"
@@ -47,11 +47,7 @@ const NewtaskForm = ({
             <br />
             <div className="priority">
               <span>Choose Priority</span>
-              <select
-                className="form-control"
-                onChange={setPriority}
-                // value={state.priority}
-              >
+              <select className="form-control" onChange={setPriority}>
                 <option selected disabled>
                   Select Priority
                 </option>
@@ -86,15 +82,19 @@ const NewtaskForm = ({
               );
             })}
           </div>
-          <div class="modal-footer">
+          <div className="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              className="btn btn-secondary"
               data-dismiss="modal"
             >
               Close
             </button>
-            <button type="button" class="btn btn-primary" onClick={saveTask}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={saveTask}
+            >
               Save changes
             </button>
           </div>
@@ -198,15 +198,6 @@ export class ToDoList extends React.Component {
   };
 
   closeModal = () => {
-    this.setState({ folderName: "", priority: "", newTask: [], itemsCount: 1 });
-
-    // folderName: "",
-    // task: {},
-    // priority: "",
-    // newTask: [],
-    // allTasks: [],
-    // currentTask: [],
-    // currentIndex: null,
     const close = document.getElementById("close");
     close.click();
   };
@@ -216,10 +207,15 @@ export class ToDoList extends React.Component {
       target: { id },
     } = e;
     const index = Number(id);
-    const { allTasks } = this.state;
-    allTasks.splice(index, 1);
-    this.setState({ allTasks });
-    localStorage.setItem("tasks", JSON.stringify(allTasks));
+    const deleteMe = window.confirm(
+      "Are you sure you want to delete this task?"
+    );
+    if (deleteMe === true) {
+      const { allTasks } = this.state;
+      allTasks.splice(index, 1);
+      this.setState({ allTasks });
+      localStorage.setItem("tasks", JSON.stringify(allTasks));
+    }
   };
 
   selectATask = (e) => {
@@ -264,7 +260,7 @@ export class ToDoList extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-6">
-              <h2>Daniel's To-do List App</h2>
+              <h2>Mini To-do List App</h2>
               <h5>{folderName}</h5>
               <div className="task-list">
                 {tasks && tasks.length
