@@ -114,6 +114,27 @@
       &.med {
         background: #dac26e;
       }
+
+      &.current-task {
+        width: 38rem;
+      }
+
+      .trash {
+        width: 20px;
+        float: right;
+        margin-top: 3px;
+        padding: 1px;
+
+        &:hover {
+          width: 23px;
+        }
+      }
+
+      &:active,
+      :focus {
+        outline: none;
+        border: none;
+      }
     }
   }
 
@@ -121,4 +142,48 @@
     border: none;
     padding: 10px;
   }
+
+  .modal-body {
+    .task-name {
+      margin-top: 1rem;
+    }
+
+    .task-items {
+      display: flex;
+      justify-content: space-between;
+
+      .plus {
+        font-weight: bolder;
+        font-size: 20px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .task-item {
+      border-radius: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .task-close {
+      font-size: 13px;
+      background: red;
+      height: 16px;
+      width: 16px;
+      text-align: center;
+      border-radius: 50%;
+      color: white;
+      margin-top: -2rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+span.empty-list {
+  float: right;
 }
